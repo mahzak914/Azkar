@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حصن المسلم | الأذكار والأدعية</title>
+<style>
+:root{
+  --bg:#0f1720; --bg2:#16212e; --card:#1b2a3a; --card2:#213548;
+  --accent:#38c172; --accent2:#2b9e5f; --gold:#e0b354;
+  --txt:#eaf2ef; --muted:#9db0c0; --line:rgba(255,255,255,.08);
+  --shadow:0 10px 30px rgba(0,0,0,.35);
+}
+[data-theme="light"]{
+  --bg:#f2f6f4; --bg2:#e8efeb; --card:#ffffff; --card2:#f5f9f7;
+  --accent:#1f9d57; --accent2:#157a43; --gold:#c99a2e;
+  --txt:#12211a; --muted:#5c6f66; --line:rgba(0,0,0,.08);
+  --shadow:0 10px 30px rgba(0,0,0,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  font-family:"Segoe UI","Tahoma",sans-serif;
+  background:radial-gradient(1200px 800px at 80% -10%,var(--bg2),var(--bg));
+  color:var(--txt); min-height:100vh; overflow-x:hidden;
+  transition:background .4s,color .4s;
+}
+.app{max-width:900px;margin:0 auto;padding:0 16px 110px;position:relative}
+
+/* Header */
+header{
+  position:sticky;top:0;z-index:50;padding:18px 16px 14px;margin:0 -16px 10px;
+  background:linear-gradient(180deg,var(--bg2),transparent);
+  backdrop-filter:blur(10px);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{
+  width:46px;height:46px;border-radius:14px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  box-shadow:0 6px 18px rgba(56,193,114,.35);font-size:24px;
+  animation:pulse 4s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.brand h1{font-size:19px;font-weight:800;letter-spacing:.3px}
+.brand p{font-size:11px;color:var(--muted);margin-top:2px}
+.hbtns{display:flex;gap:8px}
+.icon-btn{
+  width:42px;height:42px;border-radius:12px;border:1px solid var(--line);
+  background:var(--card);color:var(--txt);font-size:19px;cursor:pointer;
+  display:grid;place-items:center;transition:.25s;
+}
+.icon-btn:hover{background:var(--card2);transform:translateY(-2px)}
+
+/* Hero / greeting */
+.hero{
+  background:linear-gradient(135deg,var(--card),var(--card2));
+  border:1px solid var(--line);border-radius:22px;padding:20px;margin-bottom:16px;
+  position:relative;overflow:hidden;box-shadow:var(--shadow);
+  animation:fadeUp .6s ease;
+}
+.hero::after{content:"";position:absolute;left:-40px;top:-40px;width:160px;height:160px;
+  background:radial-gradient(circle,var(--accent),transparent 70%);opacity:.18;border-radius:50%}
+.hero .greet{font-size:14px;color:var(--muted)}
+.hero .date{font-size:22px;font-weight:800;margin:6px 0}
+.hero .hijri{font-size:13px;color:var(--gold)}
+.hero-stats{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.stat{flex:1;min-width:120px;background:rgba(255,255,255,.04);border:1px solid var(--line);
+  border-radius:14px;padding:10px 12px}
+.stat b{font-size:20px;color:var(--accent)}
+.stat span{display:block;font-size:11px;color:var(--muted)}
+
+/* Grid of sections */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-bottom:20px}
+.tile{
+  background:linear-gradient(160deg,var(--card),var(--card2));
+  border:1px solid var(--line);border-radius:18px;padding:18px 14px;cursor:pointer;
+  text-align:center;transition:.28s;position:relative;overflow:hidden;
+  animation:fadeUp .5s ease both;
+}
+.tile:hover{transform:translateY(-5px);border-color:var(--accent);box-shadow:0 14px 30px rgba(0,0,0,.3)}
+.tile .ico{font-size:32px;margin-bottom:8px;display:block}
+.tile h3{font-size:15px;font-weight:700}
+.tile p{font-size:11px;color:var(--muted);margin-top:4px}
+.tile .badge{position:absolute;top:10px;left:10px;background:var(--accent);color:#04150c;
+  font-size:10px;font-weight:800;padding:2px 8px;border-radius:20px}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+/* Section title */
+.section-head{display:flex;align-items:center;justify-content:space-between;margin:6px 0 14px}
+.section-head h2{font-size:20px;font-weight:800}
+.back{background:var(--card);border:1px solid var(--line);color:var(--txt);
+  padding:8px 14px;border-radius:12px;cursor:pointer;font-size:13px;display:flex;align-items:center;gap:6px;transition:.2s}
+.back:hover{background:var(--card2)}
+
+/* Dhikr card */
+.dhikr{
+  background:linear-gradient(160deg,var(--card),var(--card2));
+  border:1px solid var(--line);border-radius:20px;padding:20px;margin-bottom:16px;
+  position:relative;box-shadow:var(--shadow);animation:fadeUp .45s ease both;
+}
+.dhikr .text{font-size:20px;line-height:2.2;font-weight:600;text-align:center;color:var(--txt)}
+.dhikr .src{margin-top:14px;font-size:12px;color:var(--gold);text-align:center;line-height:1.7}
+.dhikr .fadl{margin-top:8px;font-size:12.5px;color:var(--muted);text-align:center;line-height:1.8;
+  background:rgba(255,255,255,.03);border-radius:12px;padding:10px}
+.dhikr-foot{display:flex;align-items:center;justify-content:space-between;margin-top:16px;gap:10px}
+.count-btn{
+  flex:1;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#04150c;
+  border:none;border-radius:14px;padding:14px;font-size:16px;font-weight:800;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:10px;transition:.15s;
+}
+.count-btn:active{transform:scale(.96)}
+.count-btn.done{background:linear-gradient(135deg,var(--gold),#b98b26);color:#1a1200}
+.rep{background:var(--card2);border:1px solid var(--line);border-radius:12px;
+  min-width:64px;text-align:center;padding:10px;font-weight:800;font-size:15px}
+.rep small{display:block;font-size:10px;color:var(--muted);font-weight:500}
+.mini{display:flex;gap:8px}
+.mini button{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);
+  background:var(--card2);color:var(--txt);font-size:17px;cursor:pointer;transition:.2s}
+.mini button:hover{background:var(--card);color:var(--accent)}
+.progress{height:5px;background:rgba(255,255,255,.08);border-radius:10px;overflow:hidden;margin-top:14px}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--gold));transition:width .35s}
+
+/* Tasbih */
+.tasbih-wrap{text-align:center;padding-top:10px}
+.tasbih-phrase{font-size:26px;font-weight:800;margin-bottom:6px;min-height:36px}
+.tasbih-sub{color:var(--muted);font-size:13px;margin-bottom:24px}
+.counter-circle{
+  width:220px;height:220px;border-radius:50%;margin:0 auto;cursor:pointer;user-select:none;
+  background:radial-gradient(circle at 50% 35%,var(--card2),var(--card));
+  border:3px solid var(--accent);display:grid;place-items:center;
+  box-shadow:0 0 0 10px rgba(56,193,114,.08),var(--shadow);transition:.1s;position:relative;
+}
+.counter-circle:active{transform:scale(.95)}
+.counter-circle .num{font-size:64px;font-weight:900;color:var(--accent);line-height:1}
+.counter-circle .lap{font-size:12px;color:var(--muted);margin-top:6px}
+.tasbih-controls{display:flex;gap:10px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+.chip{background:var(--card);border:1px solid var(--line);color:var(--txt);padding:10px 16px;
+  border-radius:30px;cursor:pointer;font-size:13px;transition:.2s;font-weight:600}
+.chip:hover{border-color:var(--accent)}
+.chip.active{background:var(--accent);color:#04150c;border-color:var(--accent)}
+.ring{position:absolute;inset:-3px;border-radius:50%;}
+
+/* Quiz */
+.quiz-box{background:linear-gradient(160deg,var(--card),var(--card2));border:1px solid var(--line);
+  border-radius:20px;padding:22px;box-shadow:var(--shadow);animation:fadeUp .4s ease}
+.q-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;font-size:13px;color:var(--muted)}
+.q-bar{height:6px;background:rgba(255,255,255,.08);border-radius:8px;overflow:hidden;margin-bottom:18px}
+.q-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));transition:.4s}
+.q-text{font-size:19px;font-weight:800;line-height:1.9;margin-bottom:20px}
+.opt{display:block;width:100%;text-align:right;background:var(--card2);border:1.5px solid var(--line);
+  color:var(--txt);padding:15px 16px;border-radius:14px;margin-bottom:11px;cursor:pointer;font-size:15px;
+  transition:.2s;font-weight:600}
+.opt:hover{border-color:var(--accent);transform:translateX(-4px)}
+.opt.correct{background:rgba(56,193,114,.2);border-color:var(--accent);color:var(--accent)}
+.opt.wrong{background:rgba(224,83,83,.18);border-color:#e05353;color:#ff8f8f}
+.opt:disabled{cursor:default;opacity:.9}
+.q-src{margin-top:6px;font-size:12px;color:var(--gold);text-align:center}
+.quiz-result{text-align:center;padding:30px 10px}
+.quiz-result .score{font-size:56px;font-weight:900;color:var(--accent)}
+.quiz-result .msg{color:var(--muted);margin:8px 0 22px;font-size:15px}
+
+/* Info cards */
+.info-card{background:linear-gradient(160deg,var(--card),var(--card2));border:1px solid var(--line);
+  border-radius:18px;padding:18px;margin-bottom:14px;animation:fadeUp .4s ease both}
+.info-card h3{color:var(--accent);font-size:16px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.info-card p{font-size:14px;line-height:2;color:var(--txt)}
+.info-card .ref{margin-top:10px;font-size:12px;color:var(--gold)}
+.info-card ul{margin:8px 20px 0;line-height:2.1;font-size:14px}
+
+/* Bottom nav */
+.nav{position:fixed;bottom:0;left:0;right:0;z-index:60;background:var(--card);
+  border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 4px 12px;
+  backdrop-filter:blur(12px);box-shadow:0 -6px 24px rgba(0,0,0,.25)}
+.nav button{background:none;border:none;color:var(--muted);font-size:11px;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 12px;border-radius:12px;transition:.2s;flex:1}
+.nav button .ni{font-size:21px}
+.nav button.active{color:var(--accent)}
+.nav button.active .ni{transform:translateY(-2px)}
+
+/* Toast */
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--accent);color:#04150c;padding:12px 22px;border-radius:30px;font-weight:800;font-size:14px;
+  opacity:0;pointer-events:none;transition:.3s;z-index:200;box-shadow:var(--shadow)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* View switching */
+.view{display:none}
+.view.active{display:block}
+
+/* Favorite star */
+.fav{position:absolute;top:16px;left:16px;font-size:20px;cursor:pointer;color:var(--muted);transition:.2s}
+.fav.on{color:var(--gold);transform:scale(1.2)}
+
+.note{background:rgba(224,179,84,.1);border:1px solid rgba(224,179,84,.3);border-radius:14px;
+  padding:12px 14px;font-size:12.5px;color:var(--gold);line-height:1.9;margin-bottom:16px}
+.empty{text-align:center;color:var(--muted);padding:50px 20px;font-size:15px}
+.completed-banner{background:linear-gradient(135deg,var(--gold),#b98b26);color:#1a1200;
+  border-radius:16px;padding:16px;text-align:center;font-weight:800;margin-bottom:16px;display:none;animation:fadeUp .4s}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header>
+    <div class="brand">
+      <div class="logo">🕌</div>
+      <div>
+        <h1>حصن المسلم</h1>
+        <p>الأذكار والأدعية الصحيحة</p>
+      </div>
+    </div>
+    <div class="hbtns">
+      <button class="icon-btn" id="themeBtn" title="الوضع">🌙</button>
+      <button class="icon-btn" id="favNav" title="المفضلة">⭐</button>
+    </div>
+  </header>
+
+  <!-- ============ HOME ============ -->
+  <div class="view active" id="view-home">
+    <div class="hero">
+      <div class="greet" id="greet">أهلاً بك</div>
+      <div class="date" id="gDate"></div>
+      <div class="hijri" id="hDate"></div>
+      <div class="hero-stats">
+        <div class="stat"><b id="stTotal">0</b><span>أذكار مكتملة اليوم</span></div>
+        <div class="stat"><b id="stTasbih">0</b><span>مجموع التسبيح</span></div>
+        <div class="stat"><b id="stStreak">0</b><span>أيام متتالية</span></div>
+      </div>
+    </div>
+
+    <div class="note">🔎 كل ذكر في هذا التطبيق مذكور بمصدره وحكم صحته. الأدعية الثابتة عن النبي ﷺ من الكتب المعتمدة (البخاري، مسلم، السنن)، ونُبّه على درجة الحديث بأمانة.</div>
+
+    <div class="grid" id="homeGrid"></div>
+  </div>
+
+  <!-- ============ AZKAR LIST ============ -->
+  <div class="view" id="view-azkar">
+    <div class="section-head">
+      <h2 id="azkarTitle"></h2>
+      <button class="back" onclick="go('home')">◀ رجوع</button>
+    </div>
+    <div class="completed-banner" id="doneBanner">🎉 ما شاء الله! أكملت هذا القسم، تقبّل الله منك</div>
+    <div id="azkarList"></div>
+  </div>
+
+  <!-- ============ TASBIH ============ -->
+  <div class="view" id="view-tasbih">
+    <div class="section-head">
+      <h2>المسبحة الإلكترونية</h2>
+      <button class="back" onclick="go('home')">◀ رجوع</button>
+    </div>
+    <div class="tasbih-wrap">
+      <div class="tasbih-phrase" id="tPhrase">سبحان الله</div>
+      <div class="tasbih-sub" id="tSub">اضغط الدائرة للتسبيح</div>
+      <div class="counter-circle" id="tCircle">
+        <div>
+          <div class="num" id="tNum">0</div>
+          <div class="lap" id="tLap">الجولة: 0</div>
+        </div>
+      </div>
+      <div class="tasbih-controls" id="tChips"></div>
+      <div class="tasbih-controls">
+        <button class="chip" onclick="setTarget(33)">هدف 33</button>
+        <button class="chip" onclick="setTarget(100)">هدف 100</button>
+        <button class="chip" onclick="setTarget(0)">بلا هدف</button>
+        <button class="chip" onclick="resetTasbih()">↺ تصفير</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ QUIZ ============ -->
+  <div class="view" id="view-quiz">
+    <div class="section-head">
+      <h2>مسابقة المعلومات</h2>
+      <button class="back" onclick="go('home')">◀ رجوع</button>
+    </div>
+    <div id="quizArea"></div>
+  </div>
+
+  <!-- ============ INFO ============ -->
+  <div class="view" id="view-info">
+    <div class="section-head">
+      <h2>معلومات دينية</h2>
+      <button class="back" onclick="go('home')">◀ رجوع</button>
+    </div>
+    <div id="infoArea"></div>
+  </div>
+
+  <!-- ============ FAVORITES ============ -->
+  <div class="view" id="view-fav">
+    <div class="section-head">
+      <h2>المفضلة ⭐</h2>
+      <button class="back" onclick="go('home')">◀ رجوع</button>
+    </div>
+    <div id="favArea"></div>
+  </div>
+
+</div>
+
+<!-- Bottom nav -->
+<div class="nav">
+  <button class="active" data-nav="home" onclick="go('home')"><span class="ni">🏠</span>الرئيسية</button>
+  <button data-nav="tasbih" onclick="go('tasbih')"><span class="ni">📿</span>المسبحة</button>
+  <button data-nav="quiz" onclick="startQuiz()"><span class="ni">🧠</span>المسابقة</button>
+  <button data-nav="info" onclick="go('info')"><span class="ni">📖</span>معلومات</button>
+  <button data-nav="fav" onclick="go('fav')"><span class="ni">⭐</span>المفضلة</button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* =========================================================
+   قاعدة بيانات الأذكار — كل ذكر بمصدره ودرجته
+   ========================================================= */
+const DATA = {
+  morning:{ title:"أذكار الصباح", icon:"🌅", items:[
+    {t:"أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ ۞ اللّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلاَّ بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلاَ يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلاَّ بِمَا شَاء وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالأَرْضَ وَلاَ يَؤُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ", n:1, src:"آية الكرسي — البقرة 255", fadl:"من قالها حين يصبح أُجير من الجن حتى يمسي. صححه الألباني."},
+    {t:"بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ ۞ قُلْ هُوَ اللَّهُ أَحَدٌ ۞ اللَّهُ الصَّمَدُ ۞ لَمْ يَلِدْ وَلَمْ يُولَدْ ۞ وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ", n:3, src:"سورة الإخلاص", fadl:"مع المعوذتين ثلاثاً كفته من كل شيء. صحيح، أبو داود والترمذي."},
+    {t:"بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ ۞ قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ۞ مِن شَرِّ مَا خَلَقَ ۞ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ ۞ وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ۞ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ", n:3, src:"سورة الفلق", fadl:"من الرقية والحفظ. صحيح."},
+    {t:"بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ ۞ قُلْ أَعُوذُ بِرَبِّ النَّاسِ ۞ مَلِكِ النَّاسِ ۞ إِلَهِ النَّاسِ ۞ مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۞ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ۞ مِنَ الْجِنَّةِ وَالنَّاسِ", n:3, src:"سورة الناس", fadl:"من الرقية والحفظ. صحيح."},
+    {t:"أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، رَبِّ أَسْأَلُكَ خَيْرَ مَا فِي هَذَا الْيَوْمِ وَخَيْرَ مَا بَعْدَهُ، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِي هَذَا الْيَوْمِ وَشَرِّ مَا بَعْدَهُ، رَبِّ أَعُوذُ بِكَ مِنَ الْكَسَلِ وَسُوءِ الْكِبَرِ، رَبِّ أَعُوذُ بِكَ مِنْ عَذَابٍ فِي النَّارِ وَعَذَابٍ فِي الْقَبْرِ", n:1, src:"رواه مسلم", fadl:"من دعاء النبي ﷺ إذا أصبح."},
+    {t:"اللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ النُّشُورُ", n:1, src:"رواه الترمذي — حسن صحيح"},
+    {t:"اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ", n:1, src:"سيد الاستغفار — رواه البخاري", fadl:"من قالها موقناً بها فمات دخل الجنة."},
+    {t:"اللَّهُمَّ إِنِّي أَصْبَحْتُ أُشْهِدُكَ، وَأُشْهِدُ حَمَلَةَ عَرْشِكَ، وَمَلَائِكَتَكَ، وَجَمِيعَ خَلْقِكَ، أَنَّكَ أَنْتَ اللَّهُ لَا إِلَهَ إِلَّا أَنْتَ وَحْدَكَ لَا شَرِيكَ لَكَ، وَأَنَّ مُحَمَّدًا عَبْدُكَ وَرَسُولُكَ", n:4, src:"رواه أبو داود — حسن", fadl:"من قالها أعتق الله رُبعه من النار."},
+    {t:"اللَّهُمَّ مَا أَصْبَحَ بِي مِنْ نِعْمَةٍ أَوْ بِأَحَدٍ مِنْ خَلْقِكَ فَمِنْكَ وَحْدَكَ لَا شَرِيكَ لَكَ، فَلَكَ الْحَمْدُ وَلَكَ الشُّكْرُ", n:1, src:"رواه أبو داود — حسن", fadl:"من قالها فقد أدى شكر يومه."},
+    {t:"حَسْبِيَ اللَّهُ لَا إِلَهَ إِلَّا هُوَ عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ", n:7, src:"رواه أبو داود", fadl:"من قالها كفاه الله ما أهمّه من أمر الدنيا والآخرة."},
+    {t:"اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ، اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي دِينِي وَدُنْيَايَ وَأَهْلِي وَمَالِي، اللَّهُمَّ اسْتُرْ عَوْرَاتِي وَآمِنْ رَوْعَاتِي، اللَّهُمَّ احْفَظْنِي مِنْ بَيْنِ يَدَيَّ وَمِنْ خَلْفِي وَعَنْ يَمِينِي وَعَنْ شِمَالِي وَمِنْ فَوْقِي، وَأَعُوذُ بِعَظَمَتِكَ أَنْ أُغْتَالَ مِنْ تَحْتِي", n:1, src:"رواه أبو داود وابن ماجه — صحيح"},
+    {t:"اللَّهُمَّ عَالِمَ الْغَيْبِ وَالشَّهَادَةِ فَاطِرَ السَّمَاوَاتِ وَالْأَرْضِ، رَبَّ كُلِّ شَيْءٍ وَمَلِيكَهُ، أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا أَنْتَ، أَعُوذُ بِكَ مِنْ شَرِّ نَفْسِي، وَمِنْ شَرِّ الشَّيْطَانِ وَشِرْكِهِ، وَأَنْ أَقْتَرِفَ عَلَى نَفْسِي سُوءًا أَوْ أَجُرَّهُ إِلَى مُسْلِمٍ", n:1, src:"رواه الترمذي — حسن صحيح"},
+    {t:"بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ", n:3, src:"رواه أبو داود والترمذي — صحيح", fadl:"من قالها لم يضره شيء."},
+    {t:"رَضِيتُ بِاللَّهِ رَبًّا، وَبِالْإِسْلَامِ دِينًا، وَبِمُحَمَّدٍ ﷺ نَبِيًّا", n:3, src:"رواه أبو داود والترمذي — صحيح", fadl:"كان حقاً على الله أن يرضيه يوم القيامة."},
+    {t:"يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ، أَصْلِحْ لِي شَأْنِي كُلَّهُ، وَلَا تَكِلْنِي إِلَى نَفْسِي طَرْفَةَ عَيْنٍ", n:1, src:"رواه النسائي والحاكم — صحيح"},
+    {t:"أَصْبَحْنَا عَلَى فِطْرَةِ الْإِسْلَامِ، وَعَلَى كَلِمَةِ الْإِخْلَاصِ، وَعَلَى دِينِ نَبِيِّنَا مُحَمَّدٍ ﷺ، وَعَلَى مِلَّةِ أَبِينَا إِبْرَاهِيمَ حَنِيفًا مُسْلِمًا وَمَا كَانَ مِنَ الْمُشْرِكِينَ", n:1, src:"رواه أحمد — صحيح"},
+    {t:"سُبْحَانَ اللَّهِ وَبِحَمْدِهِ", n:100, src:"رواه مسلم", fadl:"من قالها مئة مرة حُطّت خطاياه وإن كانت مثل زبد البحر."},
+    {t:"لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ", n:10, src:"رواه البخاري ومسلم", fadl:"كانت له عدل عشر رقاب وحفظاً من الشيطان."},
+    {t:"سُبْحَانَ اللَّهِ وَبِحَمْدِهِ عَدَدَ خَلْقِهِ، وَرِضَا نَفْسِهِ، وَزِنَةَ عَرْشِهِ، وَمِدَادَ كَلِمَاتِهِ", n:3, src:"رواه مسلم"},
+    {t:"اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى نَبِيِّنَا مُحَمَّدٍ", n:10, src:"من صلى عليّ حين يصبح وحين يمسي عشراً أدركته شفاعتي — الطبراني، حسّنه بعض أهل العلم"},
+  ]},
+
+  evening:{ title:"أذكار المساء", icon:"🌆", items:[
+    {t:"أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ ۞ اللّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلاَّ بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلاَ يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلاَّ بِمَا شَاء وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالأَرْضَ وَلاَ يَؤُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ", n:1, src:"آية الكرسي — البقرة 255", fadl:"من قالها حين يمسي أُجير من الجن حتى يصبح."},
+    {t:"بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ ۞ قُلْ هُوَ اللَّهُ أَحَدٌ ۞ اللَّهُ الصَّمَدُ ۞ لَمْ يَلِدْ وَلَمْ يُولَدْ ۞ وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ", n:3, src:"سورة الإخلاص"},
+    {t:"بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ ۞ قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ۞ مِن شَرِّ مَا خَلَقَ ۞ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ ۞ وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ۞ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ", n:3, src:"سورة الفلق"},
+    {t:"بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ ۞ قُلْ أَعُوذُ بِرَبِّ النَّاسِ ۞ مَلِكِ النَّاسِ ۞ إِلَهِ النَّاسِ ۞ مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۞ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ۞ مِنَ الْجِنَّةِ وَالنَّاسِ", n:3, src:"سورة الناس"},
+    {t:"أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، رَبِّ أَسْأَلُكَ خَيْرَ مَا فِي هَذِهِ اللَّيْلَةِ وَخَيْرَ مَا بَعْدَهَا، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِي هَذِهِ اللَّيْلَةِ وَشَرِّ مَا بَعْدَهَا، رَبِّ أَعُوذُ بِكَ مِنَ الْكَسَلِ وَسُوءِ الْكِبَرِ، رَبِّ أَعُوذُ بِكَ مِنْ عَذَابٍ فِي النَّارِ وَعَذَابٍ فِي الْقَبْرِ", n:1, src:"رواه مسلم"},
+    {t:"اللَّهُمَّ بِكَ أَمْسَيْنَا، وَبِكَ أَصْبَحْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ الْمَصِيرُ", n:1, src:"رواه الترمذي — حسن صحيح"},
+    {t:"اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ", n:1, src:"سيد الاستغفار — رواه البخاري"},
+    {t:"اللَّهُمَّ إِنِّي أَمْسَيْتُ أُشْهِدُكَ، وَأُشْهِدُ حَمَلَةَ عَرْشِكَ، وَمَلَائِكَتَكَ، وَجَمِيعَ خَلْقِكَ، أَنَّكَ أَنْتَ اللَّهُ لَا إِلَهَ إِلَّا أَنْتَ وَحْدَكَ لَا شَرِيكَ لَكَ، وَأَنَّ مُحَمَّدًا عَبْدُكَ وَرَسُولُكَ", n:4, src:"رواه أبو داود — حسن"},
+    {t:"أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ", n:3, src:"رواه مسلم", fadl:"من قالها حين يمسي لم تضره حمة تلك الليلة."},
+    {t:"حَسْبِيَ اللَّهُ لَا إِلَهَ إِلَّا هُوَ عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ", n:7, src:"رواه أبو داود"},
+    {t:"بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ", n:3, src:"رواه أبو داود والترمذي — صحيح"},
+    {t:"رَضِيتُ بِاللَّهِ رَبًّا، وَبِالْإِسْلَامِ دِينًا، وَبِمُحَمَّدٍ ﷺ نَبِيًّا", n:3, src:"رواه أبو داود والترمذي — صحيح"},
+    {t:"أَمْسَيْنَا عَلَى فِطْرَةِ الْإِسْلَامِ، وَعَلَى كَلِمَةِ الْإِخْلَاصِ، وَعَلَى دِينِ نَبِيِّنَا مُحَمَّدٍ ﷺ، وَعَلَى مِلَّةِ أَبِينَا إِبْرَاهِيمَ حَنِيفًا مُسْلِمًا وَمَا كَانَ مِنَ الْمُشْرِكِينَ", n:1, src:"رواه أحمد — صحيح"},
+    {t:"اللَّهُمَّ عَالِمَ الْغَيْبِ وَالشَّهَادَةِ فَاطِرَ السَّمَاوَاتِ وَالْأَرْضِ، رَبَّ كُلِّ شَيْءٍ وَمَلِيكَهُ، أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا أَنْتَ، أَعُوذُ بِكَ مِنْ شَرِّ نَفْسِي، وَمِنْ شَرِّ الشَّيْطَانِ وَشِرْكِهِ", n:1, src:"رواه الترمذي — حسن صحيح"},
+    {t:"سُبْحَانَ اللَّهِ وَبِحَمْدِهِ", n:100, src:"رواه مسلم", fadl:"حُطّت خطاياه وإن كانت مثل زبد البحر."},
+    {t:"اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى نَبِيِّنَا مُحَمَّدٍ", n:10, src:"من صلى عليّ حين يمسي عشراً أدركته شفاعتي"},
+  ]},
+
+  sleep:{ title:"أذكار النوم", icon:"🌙", items:[
+    {t:"بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا", n:1, src:"رواه البخاري", fadl:"كان النبي ﷺ يقولها إذا أوى إلى فراشه."},
+    {t:"اللَّهُمَّ بِاسْمِكَ أَمُوتُ وَأَحْيَا", n:1, src:"رواه البخاري"},
+    {t:"آية الكرسي: اللّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ...", n:1, src:"البقرة 255 — رواه البخاري", fadl:"من قرأها عند النوم لم يزل عليه من الله حافظ ولا يقربه شيطان."},
+    {t:"سورة الإخلاص والمعوذتين (يقرؤها وينفث في كفيه ويمسح بهما ما استطاع من جسده يبدأ برأسه ووجهه)", n:3, src:"رواه البخاري"},
+    {t:"اللَّهُمَّ قِنِي عَذَابَكَ يَوْمَ تَبْعَثُ عِبَادَكَ", n:3, src:"رواه أبو داود والترمذي — صحيح"},
+    {t:"بِاسْمِكَ رَبِّي وَضَعْتُ جَنْبِي، وَبِكَ أَرْفَعُهُ، إِنْ أَمْسَكْتَ نَفْسِي فَارْحَمْهَا، وَإِنْ أَرْسَلْتَهَا فَاحْفَظْهَا بِمَا تَحْفَظُ بِهِ عِبَادَكَ الصَّالِحِينَ", n:1, src:"رواه البخاري ومسلم"},
+    {t:"اللَّهُمَّ إِنَّكَ خَلَقْتَ نَفْسِي وَأَنْتَ تَوَفَّاهَا، لَكَ مَمَاتُهَا وَمَحْيَاهَا، إِنْ أَحْيَيْتَهَا فَاحْفَظْهَا، وَإِنْ أَمَتَّهَا فَاغْفِرْ لَهَا، اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَافِيَةَ", n:1, src:"رواه مسلم"},
+    {t:"اللَّهُمَّ رَبَّ السَّمَاوَاتِ السَّبْعِ وَرَبَّ الْعَرْشِ الْعَظِيمِ، رَبَّنَا وَرَبَّ كُلِّ شَيْءٍ، فَالِقَ الْحَبِّ وَالنَّوَى، وَمُنْزِلَ التَّوْرَاةِ وَالْإِنْجِيلِ وَالْفُرْقَانِ، أَعُوذُ بِكَ مِنْ شَرِّ كُلِّ شَيْءٍ أَنْتَ آخِذٌ بِنَاصِيَتِهِ. اللَّهُمَّ أَنْتَ الْأَوَّلُ فَلَيْسَ قَبْلَكَ شَيْءٌ، وَأَنْتَ الْآخِرُ فَلَيْسَ بَعْدَكَ شَيْءٌ، وَأَنْتَ الظَّاهِرُ فَلَيْسَ فَوْقَكَ شَيْءٌ، وَأَنْتَ الْبَاطِنُ فَلَيْسَ دُونَكَ شَيْءٌ، اقْضِ عَنَّا الدَّيْنَ وَأَغْنِنَا مِنَ الْفَقْرِ", n:1, src:"رواه مسلم"},
+    {t:"الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنَا وَسَقَانَا، وَكَفَانَا، وَآوَانَا، فَكَمْ مِمَّنْ لَا كَافِيَ لَهُ وَلَا مُؤْوِيَ", n:1, src:"رواه مسلم"},
+    {t:"اللَّهُمَّ أَسْلَمْتُ نَفْسِي إِلَيْكَ، وَفَوَّضْتُ أَمْرِي إِلَيْكَ، وَوَجَّهْتُ وَجْهِي إِلَيْكَ، وَأَلْجَأْتُ ظَهْرِي إِلَيْكَ، رَغْبَةً وَرَهْبَةً إِلَيْكَ، لَا مَلْجَأَ وَلَا مَنْجَا مِنْكَ إِلَّا إِلَيْكَ، آمَنْتُ بِكِتَابِكَ الَّذِي أَنْزَلْتَ، وَبِنَبِيِّكَ الَّذِي أَرْسَلْتَ", n:1, src:"رواه البخاري ومسلم", fadl:"من قالها ومات مات على الفطرة."},
+    {t:"سُبْحَانَ اللَّهِ (33)، وَالْحَمْدُ لِلَّهِ (33)، وَاللَّهُ أَكْبَرُ (34)", n:1, src:"رواه البخاري ومسلم", fadl:"خير لكما من خادم، تقال عند النوم."},
+    {t:"اللَّهُمَّ أَعُوذُ بِوَجْهِكَ الْكَرِيمِ وَكَلِمَاتِكَ التَّامَّاتِ مِنْ شَرِّ مَا أَنْتَ آخِذٌ بِنَاصِيَتِهِ", n:1, src:"صحيح — أبو داود"},
+  ]},
+
+  wake:{ title:"أذكار الاستيقاظ", icon:"☀️", items:[
+    {t:"الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ", n:1, src:"رواه البخاري ومسلم"},
+    {t:"لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، سُبْحَانَ اللَّهِ، وَالْحَمْدُ لِلَّهِ، وَلَا إِلَهَ إِلَّا اللَّهُ، وَاللَّهُ أَكْبَرُ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ. رَبِّ اغْفِرْ لِي", n:1, src:"رواه البخاري", fadl:"من قالها عند الاستيقاظ ثم دعا استُجيب له."},
+    {t:"الْحَمْدُ لِلَّهِ الَّذِي عَافَانِي فِي جَسَدِي، وَرَدَّ عَلَيَّ رُوحِي، وَأَذِنَ لِي بِذِكْرِهِ", n:1, src:"رواه الترمذي — حسن"},
+  ]},
+
+  prayer:{ title:"أذكار بعد الصلاة", icon:"🕋", items:[
+    {t:"أَسْتَغْفِرُ اللَّهَ (ثلاثاً) اللَّهُمَّ أَنْتَ السَّلَامُ وَمِنْكَ السَّلَامُ، تَبَارَكْتَ يَا ذَا الْجَلَالِ وَالْإِكْرَامِ", n:1, src:"رواه مسلم"},
+    {t:"لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، اللَّهُمَّ لَا مَانِعَ لِمَا أَعْطَيْتَ، وَلَا مُعْطِيَ لِمَا مَنَعْتَ، وَلَا يَنْفَعُ ذَا الْجَدِّ مِنْكَ الْجَدُّ", n:1, src:"رواه البخاري ومسلم"},
+    {t:"سُبْحَانَ اللَّهِ", n:33, src:"رواه مسلم", fadl:"التسبيح بعد كل صلاة."},
+    {t:"الْحَمْدُ لِلَّهِ", n:33, src:"رواه مسلم"},
+    {t:"اللَّهُ أَكْبَرُ", n:33, src:"رواه مسلم", fadl:"ثم تمام المئة: لا إله إلا الله وحده لا شريك له... غُفرت خطاياه وإن كانت مثل زبد البحر."},
+    {t:"لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ", n:1, src:"تمام المئة — رواه مسلم"},
+    {t:"آية الكرسي بعد كل صلاة مكتوبة", n:1, src:"رواه النسائي — صحيح", fadl:"من قرأها دبر كل صلاة لم يمنعه من دخول الجنة إلا أن يموت."},
+    {t:"قراءة الإخلاص والمعوذتين دبر كل صلاة", n:1, src:"رواه أبو داود والترمذي — صحيح"},
+    {t:"اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ", n:1, src:"رواه أبو داود والنسائي — صحيح", fadl:"أوصى بها النبي ﷺ معاذاً دبر كل صلاة."},
+  ]},
+
+  dua:{ title:"أدعية جامعة", icon:"🤲", items:[
+    {t:"رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ", n:1, src:"البقرة 201 — كان أكثر دعاء النبي ﷺ، البخاري"},
+    {t:"اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى", n:1, src:"رواه مسلم"},
+    {t:"اللَّهُمَّ اغْفِرْ لِي، وَارْحَمْنِي، وَاهْدِنِي، وَعَافِنِي، وَارْزُقْنِي", n:1, src:"رواه مسلم"},
+    {t:"اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَالْعَجْزِ وَالْكَسَلِ، وَالْبُخْلِ وَالْجُبْنِ، وَضَلَعِ الدَّيْنِ وَغَلَبَةِ الرِّجَالِ", n:1, src:"رواه البخاري"},
+    {t:"اللَّهُمَّ إِنِّي أَسْأَلُكَ الْجَنَّةَ وَأَعُوذُ بِكَ مِنَ النَّارِ", n:1, src:"رواه أبو داود — صحيح"},
+    {t:"يَا مُقَلِّبَ الْقُلُوبِ ثَبِّتْ قَلْبِي عَلَى دِينِكَ", n:1, src:"رواه الترمذي — صحيح"},
+    {t:"اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلًا مُتَقَبَّلًا", n:1, src:"رواه ابن ماجه — صحيح"},
+    {t:"رَبِّ اغْفِرْ لِي وَتُبْ عَلَيَّ إِنَّكَ أَنْتَ التَّوَّابُ الرَّحِيمُ", n:1, src:"رواه أبو داود والترمذي — صحيح", fadl:"كان يُعدّ للنبي ﷺ في المجلس مئة مرة."},
+    {t:"لَا إِلَهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ", n:1, src:"دعاء ذي النون — الأنبياء 87، الترمذي", fadl:"ما دعا بها مسلم في شيء إلا استجاب الله له."},
+    {t:"حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ", n:1, src:"آل عمران 173 — البخاري", fadl:"قالها إبراهيم حين أُلقي في النار."},
+    {t:"لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ", n:1, src:"رواه البخاري ومسلم", fadl:"كنز من كنوز الجنة."},
+    {t:"اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ زَوَالِ نِعْمَتِكَ، وَتَحَوُّلِ عَافِيَتِكَ، وَفُجَاءَةِ نِقْمَتِكَ، وَجَمِيعِ سَخَطِكَ", n:1, src:"رواه مسلم"},
+    {t:"اللَّهُمَّ أَصْلِحْ لِي دِينِي الَّذِي هُوَ عِصْمَةُ أَمْرِي، وَأَصْلِحْ لِي دُنْيَايَ الَّتِي فِيهَا مَعَاشِي، وَأَصْلِحْ لِي آخِرَتِي الَّتِي فِيهَا مَعَادِي، وَاجْعَلِ الْحَيَاةَ زِيَادَةً لِي فِي كُلِّ خَيْرٍ، وَاجْعَلِ الْمَوْتَ رَاحَةً لِي مِنْ كُلِّ شَرٍّ", n:1, src:"رواه مسلم"},
+  ]},
+};
+
+/* أذكار عامة للتسبيح */
+const TASBIH = [
+  {p:"سُبْحَانَ اللَّه", s:"تسبيح"},
+  {p:"الْحَمْدُ لِلَّه", s:"تحميد"},
+  {p:"اللَّهُ أَكْبَر", s:"تكبير"},
+  {p:"لَا إِلَهَ إِلَّا اللَّه", s:"تهليل"},
+  {p:"أَسْتَغْفِرُ اللَّه", s:"استغفار"},
+  {p:"سُبْحَانَ اللَّهِ وَبِحَمْدِهِ", s:"تسبيح وحمد"},
+  {p:"لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّه", s:"حوقلة"},
+  {p:"اللَّهُمَّ صَلِّ عَلَى مُحَمَّد", s:"صلاة على النبي ﷺ"},
+];
+
+/* المعلومات الدينية */
+const INFO = [
+  {h:"أركان الإسلام الخمسة", b:"بُني الإسلام على خمس: شهادة أن لا إله إلا الله وأن محمداً رسول الله، وإقام الصلاة، وإيتاء الزكاة، وحج البيت، وصوم رمضان.", r:"متفق عليه — البخاري ومسلم"},
+  {h:"أركان الإيمان الستة", b:"أن تؤمن بالله، وملائكته، وكتبه، ورسله، واليوم الآخر، وتؤمن بالقدر خيره وشره.", r:"رواه مسلم (حديث جبريل)"},
+  {h:"الإحسان", b:"أن تعبد الله كأنك تراه، فإن لم تكن تراه فإنه يراك.", r:"رواه مسلم"},
+  {h:"عدد الصلوات المفروضة", b:"خمس صلوات في اليوم والليلة: الفجر ركعتان، الظهر أربع، العصر أربع، المغرب ثلاث، العشاء أربع. فرضها الله ليلة الإسراء والمعراج.", r:"متفق عليه"},
+  {h:"أفضل الأعمال", b:"سُئل النبي ﷺ: أيُّ العمل أحب إلى الله؟ قال: الصلاة على وقتها، ثم برُّ الوالدين، ثم الجهاد في سبيل الله.", r:"متفق عليه"},
+  {h:"من أعظم آيات القرآن", b:"أعظم آية في كتاب الله هي آية الكرسي (البقرة 255).", r:"رواه مسلم"},
+  {h:"أحب الكلام إلى الله", b:"أحب الكلام إلى الله أربع: سبحان الله، والحمد لله، ولا إله إلا الله، والله أكبر، لا يضرك بأيهن بدأت.", r:"رواه مسلم"},
+  {h:"كلمتان خفيفتان", b:"كلمتان خفيفتان على اللسان، ثقيلتان في الميزان، حبيبتان إلى الرحمن: سبحان الله وبحمده، سبحان الله العظيم.", r:"متفق عليه"},
+  {h:"فضل الوضوء", b:"من توضأ فأحسن الوضوء خرجت خطاياه من جسده حتى تخرج من تحت أظفاره.", r:"رواه مسلم"},
+  {h:"باب الريان", b:"إن في الجنة باباً يُقال له الريان، يدخل منه الصائمون يوم القيامة، لا يدخل منه أحد غيرهم.", r:"متفق عليه"},
+  {h:"فضل صلاة الجماعة", b:"صلاة الجماعة تفضل صلاة الفذ (المنفرد) بسبع وعشرين درجة.", r:"متفق عليه"},
+  {h:"الطهور شطر الإيمان", b:"الطُّهور شطر الإيمان، والحمد لله تملأ الميزان، وسبحان الله والحمد لله تملآن ما بين السماوات والأرض.", r:"رواه مسلم"},
+  {h:"حق المسلم على المسلم", b:"حق المسلم على المسلم ست: إذا لقيته فسلّم عليه، وإذا دعاك فأجبه، وإذا استنصحك فانصح له، وإذا عطس فحمد الله فشمّته، وإذا مرض فعُده، وإذا مات فاتبعه.", r:"رواه مسلم"},
+  {h:"الدين النصيحة", b:"الدين النصيحة، قلنا لمن؟ قال: لله ولكتابه ولرسوله ولأئمة المسلمين وعامتهم.", r:"رواه مسلم"},
+  {h:"إنما الأعمال بالنيات", b:"إنما الأعمال بالنيات، وإنما لكل امرئ ما نوى، فمن كانت هجرته إلى الله ورسوله فهجرته إلى الله ورسوله.", r:"متفق عليه — أول حديث في صحيح البخاري"},
+];
+
+/* أسئلة المسابقة */
+const QUIZ = [
+  {q:"كم عدد أركان الإسلام؟", o:["أربعة","خمسة","ستة","ثلاثة"], a:1, s:"متفق عليه"},
+  {q:"كم عدد أركان الإيمان؟", o:["خمسة","سبعة","ستة","ثمانية"], a:2, s:"رواه مسلم"},
+  {q:"ما أعظم آية في القرآن الكريم؟", o:["الفاتحة","آية الكرسي","آخر البقرة","الإخلاص"], a:1, s:"رواه مسلم"},
+  {q:"كم عدد الصلوات المفروضة في اليوم والليلة؟", o:["ثلاث","أربع","خمس","ست"], a:2, s:"متفق عليه"},
+  {q:"من أول من آمن بالنبي ﷺ من الرجال؟", o:["أبو بكر الصديق","عمر بن الخطاب","علي بن أبي طالب","عثمان بن عفان"], a:0, s:"من السيرة"},
+  {q:"في أي شهر فُرض صيام رمضان؟", o:["شعبان","رمضان","رجب","محرم"], a:1, s:"البقرة 185"},
+  {q:"كم ركعة في صلاة المغرب؟", o:["ركعتان","ثلاث","أربع","خمس"], a:1, s:""},
+  {q:"ما اسم الباب الذي يدخل منه الصائمون الجنة؟", o:["باب السلام","باب الريان","باب التوبة","باب الرحمة"], a:1, s:"متفق عليه"},
+  {q:"من هو خاتم الأنبياء والمرسلين؟", o:["عيسى عليه السلام","موسى عليه السلام","محمد ﷺ","إبراهيم عليه السلام"], a:2, s:"الأحزاب 40"},
+  {q:"كم مرة يُسبّح المصلي دبر كل صلاة (سبحان الله)؟", o:["10","33","100","50"], a:1, s:"رواه مسلم"},
+  {q:"ما أول حديث في صحيح البخاري؟", o:["إنما الأعمال بالنيات","الدين النصيحة","بُني الإسلام","الطهور شطر الإيمان"], a:0, s:"البخاري"},
+  {q:"كم مرة تُقرأ المعوذتان في أذكار الصباح والمساء؟", o:["مرة","مرتان","ثلاث مرات","سبع"], a:2, s:"صحيح"},
+  {q:"ما الكلمتان الخفيفتان الثقيلتان في الميزان؟", o:["لا إله إلا الله","سبحان الله وبحمده سبحان الله العظيم","الحمد لله","الله أكبر"], a:1, s:"متفق عليه"},
+  {q:"إلى كم درجة تفضل صلاة الجماعة صلاة المنفرد؟", o:["25","27","30","20"], a:1, s:"متفق عليه"},
+  {q:"ما القول الذي هو كنز من كنوز الجنة؟", o:["سبحان الله","لا حول ولا قوة إلا بالله","الحمد لله","استغفر الله"], a:1, s:"متفق عليه"},
+  {q:"كم عدد التكبيرات مع التسبيح والتحميد دبر الصلاة لتمام المئة (الله أكبر)؟", o:["33","34","30","40"], a:1, s:"رواه مسلم"},
+  {q:"في أي ليلة فُرضت الصلوات الخمس؟", o:["ليلة القدر","ليلة الإسراء والمعراج","ليلة النصف من شعبان","أول ليلة من الهجرة"], a:1, s:"متفق عليه"},
+  {q:"من قال (سبحان الله وبحمده) مئة مرة في اليوم ماذا يحصل؟", o:["يُبنى له بيت في الجنة","حُطّت خطاياه ولو مثل زبد البحر","يُكتب من الشاكرين","تُرفع له درجة"], a:1, s:"متفق عليه"},
+  {q:"ما ركن الإسلام المتعلق بالمال؟", o:["الصلاة","الزكاة","الصوم","الحج"], a:1, s:"متفق عليه"},
+  {q:"ما معنى الإحسان كما ورد في حديث جبريل؟", o:["كثرة الصدقة","أن تعبد الله كأنك تراه","الصلاة في وقتها","بر الوالدين"], a:1, s:"رواه مسلم"},
+];
+
+/* =========================================================
+   الحالة والتخزين
+   ========================================================= */
+const LS = {
+  get:(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}},
+  set:(k,v)=>localStorage.setItem(k,JSON.stringify(v))
+};
+let state = {
+  counts: LS.get('counts',{}),          // عدّاد كل ذكر لليوم
+  favs: LS.get('favs',[]),
+  tasbihTotal: LS.get('tasbihTotal',0),
+  streak: LS.get('streak',{days:0,last:null}),
+  today: new Date().toDateString()
+};
+
+/* إعادة تصفير عدادات الأذكار كل يوم */
+if(LS.get('lastDay',null) !== state.today){
+  state.counts = {};
+  LS.set('counts',{});
+  LS.set('lastDay',state.today);
+  // streak
+  const y = new Date(Date.now()-86400000).toDateString();
+  if(state.streak.last===y){state.streak.days++;}
+  else if(state.streak.last!==state.today){state.streak.days=1;}
+  state.streak.last=state.today;
+  LS.set('streak',state.streak);
+}
+
+/* =========================================================
+   التنقل بين الصفحات
+   ========================================================= */
+function go(view){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+view).classList.add('active');
+  document.querySelectorAll('.nav button').forEach(b=>{
+    b.classList.toggle('active', b.dataset.nav===view);
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* =========================================================
+   الصفحة الرئيسية
+   ========================================================= */
+function renderHome(){
+  const now = new Date();
+  const hour = now.getHours();
+  let greet = "أهلاً بك 👋";
+  if(hour<12) greet="صباح الخير 🌅"; else if(hour<18) greet="مساء الخير 🌇"; else greet="مساء الخير 🌙";
+  document.getElementById('greet').textContent=greet;
+  document.getElementById('gDate').textContent = now.toLocaleDateString('ar',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  try{
+    document.getElementById('hDate').textContent = new Intl.DateTimeFormat('ar-SA-u-ca-islamic',{day:'numeric',month:'long',year:'numeric'}).format(now)+' هـ';
+  }catch{document.getElementById('hDate').textContent='';}
+
+  const tiles = [
+    {k:'morning',...DATA.morning, sub:DATA.morning.items.length+' ذكر'},
+    {k:'evening',...DATA.evening, sub:DATA.evening.items.length+' ذكر'},
+    {k:'sleep',...DATA.sleep, sub:DATA.sleep.items.length+' ذكر'},
+    {k:'wake',...DATA.wake, sub:DATA.wake.items.length+' ذكر'},
+    {k:'prayer',...DATA.prayer, sub:DATA.prayer.items.length+' ذكر'},
+    {k:'dua',...DATA.dua, sub:DATA.dua.items.length+' دعاء'},
+    {k:'tasbih', title:'المسبحة', icon:'📿', sub:'عدّاد التسبيح'},
+    {k:'quiz', title:'المسابقة', icon:'🧠', sub:QUIZ.length+' سؤال'},
+    {k:'info', title:'معلومات دينية', icon:'📖', sub:INFO.length+' معلومة'},
+  ];
+  const grid = document.getElementById('homeGrid');
+  grid.innerHTML='';
+  tiles.forEach((t,i)=>{
+    const el=document.createElement('div');
+    el.className='tile'; el.style.animationDelay=(i*0.05)+'s';
+    el.innerHTML=`<span class="ico">${t.icon}</span><h3>${t.title}</h3><p>${t.sub}</p>`;
+    el.onclick=()=>{
+      if(t.k==='tasbih') go('tasbih');
+      else if(t.k==='quiz') startQuiz();
+      else if(t.k==='info') go('info');
+      else openAzkar(t.k);
+    };
+    grid.appendChild(el);
+  });
+  updateStats();
+}
+
+function updateStats(){
+  // عدد الأذكار المكتملة اليوم
+  let done=0;
+  Object.keys(DATA).forEach(cat=>{
+    DATA[cat].items.forEach((it,idx)=>{
+      const key=cat+'_'+idx;
+      if((state.counts[key]||0)>=it.n) done++;
+    });
+  });
+  document.getElementById('stTotal').textContent=done;
+  document.getElementById('stTasbih').textContent=state.tasbihTotal;
+  document.getElementById('stStreak').textContent=state.streak.days;
+}
+
+/* =========================================================
+   عرض قائمة الأذكار
+   ========================================================= */
+let currentCat=null;
+function openAzkar(cat){
+  currentCat=cat;
+  const data=DATA[cat];
+  document.getElementById('azkarTitle').textContent=data.icon+' '+data.title;
+  const list=document.getElementById('azkarList');
+  list.innerHTML='';
+  data.items.forEach((it,idx)=>{
+    const key=cat+'_'+idx;
+    const cur=state.counts[key]||0;
+    const isFav=state.favs.some(f=>f.key===key);
+    const card=document.createElement('div');
+    card.className='dhikr'; card.style.animationDelay=(idx*0.04)+'s';
+    card.innerHTML=`
+      <span class="fav ${isFav?'on':''}" data-key="${key}">★</span>
+      <div class="text">${it.t}</div>
+      <div class="src">📚 ${it.src}</div>
+      ${it.fadl?`<div class="fadl">✨ ${it.fadl}</div>`:''}
+      <div class="progress"><i style="width:${Math.min(100,cur/it.n*100)}%"></i></div>
+      <div class="dhikr-foot">
+        <div class="mini">
+          <button class="reset-one" title="تصفير">↺</button>
+        </div>
+        <div class="rep"><span class="cur">${cur}</span> / ${it.n}<small>التكرار</small></div>
+        <button class="count-btn ${cur>=it.n?'done':''}">
+          ${cur>=it.n?'✓ تم':'اضغط للعد'}
+        </button>
+      </div>`;
+    // أحداث
+    const cntBtn=card.querySelector('.count-btn');
+    const curSpan=card.querySelector('.cur');
+    const bar=card.querySelector('.progress i');
+    cntBtn.onclick=()=>{
+      let c=state.counts[key]||0;
+      if(c<it.n) c++;
+      state.counts[key]=c;
+      LS.set('counts',state.counts);
+      curSpan.textContent=c;
+      bar.style.width=Math.min(100,c/it.n*100)+'%';
+      if(navigator.vibrate) navigator.vibrate(30);
+      if(c>=it.n){cntBtn.classList.add('done');cntBtn.textContent='✓ تم';checkDone();}
+      updateStats();
+    };
+    card.querySelector('.reset-one').onclick=()=>{
+      state.counts[key]=0; LS.set('counts',state.counts);
+      curSpan.textContent=0; bar.style.width='0%';
+      cntBtn.classList.remove('done'); cntBtn.textContent='اضغط للعد';
+      updateStats(); checkDone();
+    };
+    card.querySelector('.fav').onclick=(e)=>{
+      const k=e.target.dataset.key;
+      const i=state.favs.findIndex(f=>f.key===k);
+      if(i>-1){state.favs.splice(i,1);e.target.classList.remove('on');toast('أُزيل من المفضلة');}
+      else{state.favs.push({key:k,cat,idx,...it});e.target.classList.add('on');toast('أُضيف للمفضلة ⭐');}
+      LS.set('favs',state.favs);
+    };
+    list.appendChild(card);
+  });
+  checkDone();
+  go('azkar');
+}
+
+function checkDone(){
+  const data=DATA[currentCat];
+  const all=data.items.every((it,idx)=>(state.counts[currentCat+'_'+idx]||0)>=it.n);
+  document.getElementById('doneBanner').style.display=all?'block':'none';
+}
+
+/* =========================================================
+   المسبحة
+   ========================================================= */
+let tCount=0, tLaps=0, tTarget=33, tIndex=0;
+function renderTasbihChips(){
+  const wrap=document.getElementById('tChips');
+  wrap.innerHTML='';
+  TASBIH.forEach((t,i)=>{
+    const c=document.createElement('button');
+    c.className='chip'+(i===tIndex?' active':'');
+    c.textContent=t.p;
+    c.onclick=()=>{tIndex=i;updateTasbihPhrase();renderTasbihChips();};
+    wrap.appendChild(c);
+  });
+}
+function updateTasbihPhrase(){
+  document.getElementById('tPhrase').textContent=TASBIH[tIndex].p;
+  document.getElementById('tSub').textContent=TASBIH[tIndex].s+(tTarget?` • الهدف ${tTarget}`:' • بلا هدف');
+}
+function setTarget(n){tTarget=n;updateTasbihPhrase();}
+function resetTasbih(){tCount=0;tLaps=0;document.getElementById('tNum').textContent=0;document.getElementById('tLap').textContent='الجولة: 0';}
+document.getElementById('tCircle').addEventListener('click',()=>{
+  tCount++;
+  state.tasbihTotal++;
+  LS.set('tasbihTotal',state.tasbihTotal);
+  const numEl=document.getElementById('tNum');
+  if(tTarget && tCount>tTarget){
+    tCount=1; tLaps++;
+    document.getElementById('tLap').textContent='الجولة: '+tLaps;
+    toast('أتممت جولة! 🎉');
+  }
+  numEl.textContent=tCount;
+  numEl.style.transform='scale(1.25)';
+  setTimeout(()=>numEl.style.transform='scale(1)',100);
+  if(navigator.vibrate) navigator.vibrate(tTarget&&tCount===tTarget?[60,30,60]:25);
+  if(tTarget && tCount===tTarget){toast('ما شاء الله، بلغت الهدف ✨');}
+  updateStats();
+});
+
+/* =========================================================
+   المسابقة
+   ========================================================= */
+let quizQ=[], qIdx=0, qScore=0;
+function startQuiz(){
+  quizQ=[...QUIZ].sort(()=>Math.random()-0.5).slice(0,10);
+  qIdx=0; qScore=0;
+  go('quiz');
+  renderQuestion();
+}
+function renderQuestion(){
+  const area=document.getElementById('quizArea');
+  if(qIdx>=quizQ.length){return showResult();}
+  const q=quizQ[qIdx];
+  const opts=q.o.map((o,i)=>`<button class="opt" data-i="${i}">${o}</button>`).join('');
+  area.innerHTML=`
+    <div class="quiz-box">
+      <div class="q-top"><span>السؤال ${qIdx+1} من ${quizQ.length}</span><span>النقاط: ${qScore}</span></div>
+      <div class="q-bar"><i style="width:${qIdx/quizQ.length*100}%"></i></div>
+      <div class="q-text">${q.q}</div>
+      ${opts}
+      <div class="q-src" id="qSrc"></div>
+    </div>`;
+  area.querySelectorAll('.opt').forEach(btn=>{
+    btn.onclick=()=>answer(parseInt(btn.dataset.i),btn);
+  });
+}
+function answer(i,btn){
+  const q=quizQ[qIdx];
+  const all=document.querySelectorAll('.opt');
+  all.forEach(b=>b.disabled=true);
+  if(i===q.a){btn.classList.add('correct');qScore++;if(navigator.vibrate)navigator.vibrate(40);}
+  else{btn.classList.add('wrong');all[q.a].classList.add('correct');}
+  if(q.s) document.getElementById('qSrc').textContent='📚 المصدر: '+q.s;
+  setTimeout(()=>{qIdx++;renderQuestion();},1400);
+}
+function showResult(){
+  const pct=Math.round(qScore/quizQ.length*100);
+  let msg;
+  if(pct===100) msg='ما شاء الله! درجة كاملة، بارك الله فيك 🌟';
+  else if(pct>=70) msg='أحسنت! نتيجة ممتازة، واصل التعلّم 👏';
+  else if(pct>=50) msg='جيد، وبإمكانك تحسين معلوماتك أكثر 📖';
+  else msg='لا بأس، المحاولة هي بداية العلم، أعد الكرّة 💪';
+  document.getElementById('quizArea').innerHTML=`
+    <div class="quiz-box quiz-result">
+      <div class="score">${qScore}/${quizQ.length}</div>
+      <div class="msg">${msg}</div>
+      <button class="count-btn" onclick="startQuiz()">🔁 إعادة المسابقة</button>
+      <div style="height:10px"></div>
+      <button class="back" style="width:100%;justify-content:center" onclick="go('home')">◀ العودة للرئيسية</button>
+    </div>`;
+}
+
+/* =========================================================
+   المعلومات
+   ========================================================= */
+function renderInfo(){
+  const area=document.getElementById('infoArea');
+  area.innerHTML='';
+  INFO.forEach((it,i)=>{
+    const c=document.createElement('div');
+    c.className='info-card'; c.style.animationDelay=(i*0.04)+'s';
+    c.innerHTML=`<h3>💡 ${it.h}</h3><p>${it.b}</p><div class="ref">📚 ${it.r}</div>`;
+    area.appendChild(c);
+  });
+}
+
+/* =========================================================
+   المفضلة
+   ========================================================= */
+function renderFav(){
+  const area=document.getElementById('favArea');
+  if(state.favs.length===0){
+    area.innerHTML='<div class="empty">لا توجد أذكار في المفضلة بعد.<br>اضغط النجمة ⭐ بجانب أي ذكر لإضافته.</div>';
+    return;
+  }
+  area.innerHTML='';
+  state.favs.forEach((it,i)=>{
+    const c=document.createElement('div');
+    c.className='dhikr'; c.style.animationDelay=(i*0.04)+'s';
+    c.innerHTML=`
+      <span class="fav on" data-key="${it.key}">★</span>
+      <div class="text">${it.t}</div>
+      <div class="src">📚 ${it.src}</div>
+      ${it.fadl?`<div class="fadl">✨ ${it.fadl}</div>`:''}`;
+    c.querySelector('.fav').onclick=(e)=>{
+      const k=e.target.dataset.key;
+      state.favs=state.favs.filter(f=>f.key!==k);
+      LS.set('favs',state.favs);
+      renderFav(); toast('أُزيل من المفضلة');
+    };
+    area.appendChild(c);
+  });
+}
+
+/* =========================================================
+   الوضع الليلي/النهاري
+   ========================================================= */
+const themeBtn=document.getElementById('themeBtn');
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  themeBtn.textContent=t==='light'?'☀️':'🌙';
+  LS.set('theme',t);
+}
+applyTheme(LS.get('theme','dark'));
+themeBtn.onclick=()=>applyTheme(document.documentElement.getAttribute('data-theme')==='light'?'dark':'light');
+document.getElementById('favNav').onclick=()=>go('fav');
+
+/* =========================================================
+   Toast
+   ========================================================= */
+let toastTimer;
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),1800);
+}
+
+/* hook nav to render on show */
+const _go=go;
+go=function(v){
+  _go(v);
+  if(v==='info') renderInfo();
+  if(v==='fav') renderFav();
+  if(v==='tasbih'){renderTasbihChips();updateTasbihPhrase();}
+};
+
+/* =========================================================
+   التشغيل
+   ========================================================= */
+renderHome();
+renderTasbihChips();
+updateTasbihPhrase();
+</script>
+</body>
+</html>
